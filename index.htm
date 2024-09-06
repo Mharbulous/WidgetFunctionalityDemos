@@ -74,6 +74,27 @@
             border-radius: 4px;
             margin-top: 10px;
         }
+
+        .example table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        .example th, .example td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        .example th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .example tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
     </style>
 </head>
 <body>
@@ -164,14 +185,40 @@
                 <li>Case prop controls how to handle capitalization of certain surnames:</li>
             </ul>
             <div class="example">
-                Example:  Parties = "Jane Mcdoe; John O'brien; John macnamara"
-                                                DISPLAYS AS:
-                [Case: ""  OxfordComma == "true"]           Jane Mcdoe, John O'brien, and John macnamara                  
-                [Case: ""  OxfordComma == "false"]          Jane Mcdoe, John O'brien and John macnamara                           
-                [Case: "McCase"  OxfordComma == "true"]     Jane McDoe, John O'Brien, and John MacNamara                       
-                [Case: "McCAPS"  OxfordComma == "true"]     JANE McDOE, JOHN O'BRIEN AND JOHN MacNAMARA                       
-                [Case: "ALLCAPS"  OxfordComma == "false"]   JANE MCDOE, JOHN O'BRIEN AND JOHN MACNAMARA
-            </div>
+    Example:  Parties = "Jane Mcdoe; John O'brien; John macnamara"
+    <table>
+        <tr>
+            <th>Case</th>
+            <th>OxfordComma</th>
+            <th>DISPLAYS AS</th>
+        </tr>
+        <tr>
+            <td>""</td>
+            <td>true</td>
+            <td>Jane Mcdoe, John O'brien, and John macnamara</td>
+        </tr>
+        <tr>
+            <td>""</td>
+            <td>false</td>
+            <td>Jane Mcdoe, John O'brien and John macnamara</td>
+        </tr>
+        <tr>
+            <td>"McCase"</td>
+            <td>true</td>
+            <td>Jane McDoe, John O'Brien, and John MacNamara</td>
+        </tr>
+        <tr>
+            <td>"McCAPS"</td>
+            <td>true</td>
+            <td>JANE McDOE, JOHN O'BRIEN, and JOHN MacNAMARA</td>
+        </tr>
+        <tr>
+            <td>"ALLCAPS"</td>
+            <td>false</td>
+            <td>JANE MCDOE, JOHN O'BRIEN AND JOHN MACNAMARA</td>
+        </tr>
+    </table>
+</div>
             <ul>
                 <li>PartyName widgets can be dragged and dropped to other PartyNameList widgets, removing the PartyName widget from one PartyNameList and adding it to the other PartyNameList.</li>
                 <li>PartyName widgets can be dragged and dropped within the current PartyNameList widgets, rearranging the PartyNames within the widget.</li>
