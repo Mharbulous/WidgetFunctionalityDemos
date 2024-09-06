@@ -1,0 +1,210 @@
+/* Designed for BCSOP.htm version 3.32
+ * Update: Adjusted styling for Add buttons below party lists
+ */
+
+:root {
+  --primary-color: #333;
+  --background-color: #f9f9f9;
+  --document-background: #fff;
+  --border-color: #000;
+  --hover-background: #f0f0f0;
+  --hover-border: #ccc;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--primary-color);
+  margin: 0;
+  padding: 20px;
+  background-color: var(--background-color);
+}
+
+.document-wrapper {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.document {
+  background-color: var(--document-background);
+  border: 1px solid var(--border-color);
+  padding: 40px;
+  margin: 20px auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.document-title {
+  text-align: center;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#headerTable {
+  margin-bottom: 5px;
+  table-layout: auto;
+}
+
+#mainTable {
+  margin-top: 5px;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th, td {
+  border: 1px solid var(--border-color);
+  padding: 8px;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+#headerTable td {
+  padding: 2px 8px;
+}
+
+.left-column { 
+  width: 15%; 
+  text-align: left; 
+}
+
+.center-column { 
+  text-align: center;
+  min-width: 400px;
+}
+
+#headerTable .right-column { 
+  width: auto;
+  white-space: nowrap;
+  text-align: right;
+}
+
+#headerTable .right-column .file-info {
+  display: inline-block;
+  min-width: 100%;
+}
+
+#courtRegistryDisplay,
+#courtRegistryEdit,
+#courtRegistrySelect {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#mainTable .right-column {
+  text-align: right;
+  width: 15%;
+  white-space: normal;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+#courtNameDisplay {
+  white-space: nowrap;
+}
+
+.named-user {
+  text-transform: uppercase;
+}
+
+.editable {
+  cursor: pointer;
+}
+
+.editable:hover {
+  background-color: var(--hover-background);
+}
+
+.edit-mode {
+  display: none;
+}
+
+.edit-mode input, .edit-mode textarea {
+  width: 100%;
+  padding: 5px;
+  font-size: 14px;
+  border: 1px solid var(--hover-border);
+}
+
+.edit-mode textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.file-info {
+  line-height: 1.2;
+}
+
+.party-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+}
+
+.party-list {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.party-name {
+  display: inline-block;
+  cursor: pointer;
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
+.party-name:hover {
+  background-color: var(--hover-background);
+}
+
+.add-button, #addNewPartyTypeButton {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 5px;
+  display: none;
+}
+
+.default-registry {
+  background-color: #FFFFD0;
+}
+
+.party-type-row {
+  text-align: right;
+  padding-right: 15px;
+}
+
+.party-type-row .editable,
+.party-type-row .edit-mode {
+  display: inline-block;
+  text-align: right;
+  width: 100%;
+}
+
+.party-type-row .edit-mode input {
+  text-align: right;
+}
+
+.center-column[colspan="2"] {
+  text-align: right;
+  padding-right: 15px;
+}
+
+.center-column[colspan="2"] .editable,
+.center-column[colspan="2"] .edit-mode {
+  display: inline-block;
+  width: 100%;
+  text-align: right;
+}

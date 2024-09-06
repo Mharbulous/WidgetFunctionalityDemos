@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Adding, Editing and Deleting Parties (version 3.32)</title>
+<link rel="stylesheet" href="BCSOP.css">
+</head>
+<body>
+<div class="document-wrapper">
+    <main class="document">
+        <h1 class="document-title">Adding, Editing and Deleting Parties (version 3.32)</h1>
+        <table id="headerTable">
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"></td>
+                <td class="right-column">
+                    <div class="file-info">
+                        <div class="editable" id="courtFileNoDisplay">File No.</div>
+                        <div class="edit-mode" id="courtFileNoEdit">
+                            <input type="text" id="courtFileNoInput" placeholder="File No.">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"></td>
+                <td class="right-column">
+                    <div class="file-info">
+                        <div class="editable" id="courtRegistryDisplay">Court Registry</div>
+                        <div class="edit-mode" id="courtRegistryEdit">
+                            <select id="courtRegistrySelect">
+                                <option value="Court Registry">Choose Registry</option>
+                                <option value="Abbotsford Registry">Abbotsford Registry</option>
+                                <option value="Campbell River Registry">Campbell River Registry</option>
+                                <option value="Chilliwack Registry">Chilliwack Registry</option>
+                                <option value="Courtenay Registry">Courtenay Registry</option>
+                                <option value="Cranbrook Registry">Cranbrook Registry</option>
+                                <option value="Dawson Creek Registry">Dawson Creek Registry</option>
+                                <option value="Duncan Registry">Duncan Registry</option>
+                                <option value="Fort Nelson Registry">Fort Nelson Registry</option>
+                                <option value="Fort St. John Registry">Fort St. John Registry</option>
+                                <option value="Golden Registry">Golden Registry</option>
+                                <option value="Kamloops Registry">Kamloops Registry</option>
+                                <option value="Kelowna Registry">Kelowna Registry</option>
+                                <option value="Nanaimo Registry">Nanaimo Registry</option>
+                                <option value="Nelson Registry">Nelson Registry</option>
+                                <option value="New Westminster Registry">New Westminster Registry</option>
+                                <option value="Penticton Registry">Penticton Registry</option>
+                                <option value="Port Alberni Registry">Port Alberni Registry</option>
+                                <option value="Powell River Registry">Powell River Registry</option>
+                                <option value="Prince George Registry">Prince George Registry</option>
+                                <option value="Prince Rupert Registry">Prince Rupert Registry</option>
+                                <option value="Quesnel Registry">Quesnel Registry</option>
+                                <option value="Revelstoke Registry">Revelstoke Registry</option>
+                                <option value="Rossland Registry">Rossland Registry</option>
+                                <option value="Salmon Arm Registry">Salmon Arm Registry</option>
+                                <option value="Smithers Registry">Smithers Registry</option>
+                                <option value="Terrace Registry">Terrace Registry</option>
+                                <option value="Vancouver Registry">Vancouver Registry</option>
+                                <option value="Vernon Registry">Vernon Registry</option>
+                                <option value="Victoria Registry">Victoria Registry</option>
+                                <option value="Williams Lake Registry">Williams Lake Registry</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table id="mainTable">
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column">
+                    <div class="editable" id="courtNameDisplay"><strong>IN THE SUPREME COURT OF BRITISH COLUMBIA</strong></div>
+                    <div class="edit-mode" id="courtNameEdit">
+                        <textarea id="courtNameInput" placeholder="Court Name"></textarea>
+                    </div>
+                </td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column">BETWEEN:</td>
+                <td class="center-column"></td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column party-container" id="plaintiffContainer">
+                    <div class="party-list" id="plaintiffList"></div>
+                    <button class="add-button" id="addPlaintiffButton">Add Plaintiff</button>
+                </td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="right-column" colspan="3">
+                    <span class="editable" id="plaintiffTypeDisplay">PLAINTIFF</span>
+                    <div class="edit-mode" id="plaintiffTypeEdit">
+                        <input type="text" id="plaintiffTypeInput" placeholder="Plaintiff Type">
+                    </div>
+                </td>                
+            </tr>
+            <tr>
+                <td class="left-column">AND:</td>
+                <td class="center-column"></td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column party-container" id="defendantContainer">
+                    <div class="party-list" id="defendantList"></div>
+                    <button class="add-button" id="addDefendantButton">Add Defendant</button>
+                </td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="right-column" colspan="3">
+                    <span class="editable" id="defendantTypeDisplay">DEFENDANTS</span>
+                    <div class="edit-mode" id="defendantTypeEdit">
+                        <input type="text" id="defendantTypeInput" placeholder="Defendant Type">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"><strong>LIST OF DOCUMENTS</strong></td>
+                <td class="right-column" id="addNewPartyTypeCell">
+                    <button id="addNewPartyTypeButton">Add New Party Type</button>
+                </td>
+            </tr>            
+        </table>
+    </main>
+</div>
+
+<script src="add-edit-delete.js"></script>
+</body>
+</html>
