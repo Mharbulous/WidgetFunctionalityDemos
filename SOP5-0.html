@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BC Style of Proceeding (version 5.0)</title>
+    <link rel="stylesheet" href="SOP.css">
+    <link rel="stylesheet" href="commas.css">
+    <script src="drag-and-drop-internal.js"></script>
+</head>
+
+<body>
+    <div class="document-wrapper">
+        <main class="document">
+            <h1 class="document-title" class="document-title">BC Style of Proceeding (version 5.0)</h1>
+            
+            <!-- START OF HEADER TABLE - DO NOT REMOVE -->
+            <table id="headerTable">
+                <tr>
+                    <td class="header-left-column"></td>
+                    <td class="header-right-column">
+                        <div id="courtFileNoDisplay">File No.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="header-left-column"></td>
+                    <td class="header-right-column">
+                        <div id="courtRegistryDisplay">Court Registry</div>
+                    </td>
+                </tr>
+            </table>
+            <!-- END OF HEADER TABLE - DO NOT REMOVE -->
+
+            <table id="mainTable">
+                <tr>
+                    <td class="left-column"></td>
+                    <td class="center-column">
+                        <div id="courtNameDisplay"><strong>IN THE SUPREME COURT OF BRITISH COLUMBIA</strong></div>
+                    </td>
+                    <td class="right-column"></td>
+                </tr>
+                <tr>
+                    <td class="left-column">BETWEEN:</td>
+                    <td class="center-column"></td>
+                    <td class="right-column"></td>
+                </tr>
+                <tr>
+                    <td class="left-column"></td>
+                    <td class="center-column party-container">
+                        <div class="party-list" id="plaintiffList" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <span class="named-party" id="plaintiff1" draggable="true" ondragstart="drag(event)">JASON BOURNE</span>
+                            <span class="named-party" id="plaintiff2" draggable="true" ondragstart="drag(event)">JOHN DOE</span>
+                            <span class="named-party" id="plaintiff3" draggable="true" ondragstart="drag(event)">1241641 BC LTD.</span>
+                        </div>
+                    </td>
+                    <td class="right-column"></td>
+                </tr>
+                <tr>
+                    <td class="left-column"></td>
+                    <td class="center-column"></td>
+                    <td class="right-column">
+                        <span id="plaintiffTypeDisplay">PLAINTIFF</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="left-column">AND:</td>
+                    <td class="center-column"></td>
+                    <td class="right-column"></td>
+                </tr>
+                <tr>
+                    <td class="left-column"></td>
+                    <td class="center-column party-container">
+                        <div class="party-list" id="defendantList" ondrop="drop(event)" ondragover="allowDrop(event)">
+                            <span class="named-party" id="defendant1" draggable="true" ondragstart="drag(event)">JANE DOE</span>
+                            <span class="named-party" id="defendant2" draggable="true" ondragstart="drag(event)">ACME CORP.</span>
+                        </div>
+                    </td>
+                    <td class="right-column"></td>
+                </tr>
+                <tr>
+                    <td class="left-column"></td>
+                    <td class="center-column"></td>
+                    <td class="right-column">
+                        <span id="defendantTypeDisplay">DEFENDANTS</span>
+                    </td>
+                </tr>
+            </table>
+        </main>
+    </div>
+</body>
+</html>
