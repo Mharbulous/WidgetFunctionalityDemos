@@ -107,8 +107,8 @@
         <li>PartyName.vue</li>
     </ul>
     The delivered widgets must not have any third party dependencies other than Vue 3 + Vite.
-    They must be self-contained widgets that can be used by other Vue 3 widgets in the normal way.
-    I.e. You can assume that there will be an App.vue file with the follow code:
+    They must be self-contained widgets that can be used by other Vue 3 widgets in the normal way.<br>
+    I.e. Assume that there will be an App.vue file with the following code:
         <pre><code class="language-vue">
         &lt;script&gt;
         import FormText from './FormText.vue'
@@ -119,7 +119,9 @@
         export default {
             components: {
                 FormText,
-                FormDrop
+                FormDrop,
+                PartyName,
+                PartyNameList                
             },
             // other component logic
         }
