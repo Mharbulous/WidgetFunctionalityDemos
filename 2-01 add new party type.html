@@ -1,0 +1,560 @@
+<html><head><base href="https://courtforms.ai/can/bc/bcsc/sop">
+<title>Inline Editing, Adding and Deleting (version 26)</title>
+<style>
+    :root {
+        --primary-color: #333;
+        --background-color: #f9f9f9;
+        --document-background: #fff;
+        --border-color: #000;
+        --hover-background: #f0f0f0;
+        --hover-border: #ccc;
+    }
+
+    body {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--primary-color);
+        margin: 0;
+        padding: 20px;
+        background-color: var(--background-color);
+    }
+
+    .document-wrapper {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        overflow-x: auto;
+    }
+
+    .document {
+        background-color: var(--document-background);
+        border: 1px solid var(--border-color);
+        padding: 40px;
+        margin: 20px auto;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .document-title {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #headerTable {
+        margin-bottom: 5px;
+    }
+
+    #mainTable {
+        margin-top: 5px;
+    }
+
+    th, td {
+        border: 1px solid var(--border-color);
+        padding: 8px;
+        font-size: 16px;
+        vertical-align: middle;
+    }
+
+    #headerTable td {
+        padding: 2px 8px;
+    }
+
+    .left-column { width: 15%; text-align: left; }
+    .center-column { text-align: center; }
+    .right-column { 
+        text-align: right;
+        white-space: nowrap;
+        width: 1%;
+        min-width: max-content;
+    }
+
+    .named-user {
+        text-transform: uppercase;
+    }
+
+    .editable {
+        cursor: pointer;
+    }
+
+    .editable:hover {
+        background-color: var(--hover-background);
+    }
+
+    .edit-mode {
+        display: none;
+    }
+
+    .edit-mode input, .edit-mode textarea {
+        width: 100%;
+        padding: 5px;
+        font-size: 14px;
+        border: 1px solid var(--hover-border);
+    }
+
+    .edit-mode textarea {
+        resize: vertical;
+        min-height: 60px;
+    }
+
+    .add-button, #addNewPartyTypeButton {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        color: #333;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-bottom: 5px;
+        display: none;
+    }
+
+    .file-info {
+        line-height: 1.2;
+    }
+
+    .party-list {
+        display: inline;
+    }
+
+    .party-name {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .party-name:hover {
+        background-color: var(--hover-background);
+    }
+
+    .party-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: none;
+    }
+
+    @media (max-width: 600px) {
+        .document {
+            padding: 20px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="document-wrapper">
+    <main class="document">
+        <h1 class="document-title">Inline Editing, Adding and Deleting (version 26)</h1>
+        <table id="headerTable">
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"></td>
+                <td class="right-column">
+                    <div class="file-info">
+                        <div class="editable" id="courtFileNoDisplay">File No.</div>
+                        <div class="edit-mode" id="courtFileNoEdit">
+                            <input type="text" id="courtFileNoInput" placeholder="File No.">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"></td>
+                <td class="right-column">
+                    <div class="file-info">
+                        <div class="editable" id="courtRegistryDisplay">Court Registry</div>
+                        <div class="edit-mode" id="courtRegistryEdit">
+                            <input type="text" id="courtRegistryInput" placeholder="Court Registry">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <table id="mainTable">
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column">
+                    <div class="editable" id="courtNameDisplay"><strong>IN THE SUPREME COURT OF BRITISH COLUMBIA</strong></div>
+                    <div class="edit-mode" id="courtNameEdit">
+                        <textarea id="courtNameInput" placeholder="Court Name"></textarea>
+                    </div>
+                </td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column">BETWEEN:</td>
+                <td class="center-column"></td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column party-container" id="plaintiffContainer">
+                    <button class="add-button" id="addPlaintiffButton">Add a Plaintiff</button>
+                    <div class="party-list" id="plaintiffList"></div>
+                </td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"></td>
+                <td class="right-column">
+                    <span class="editable" id="plaintiffTypeDisplay">PLAINTIFF</span>
+                    <div class="edit-mode" id="plaintiffTypeEdit">
+                        <input type="text" id="plaintiffTypeInput" placeholder="Plaintiff Type">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left-column">AND:</td>
+                <td class="center-column"></td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column party-container" id="defendantContainer">
+                    <button class="add-button" id="addDefendantButton">Add a Defendant</button>
+                    <div class="party-list" id="defendantList"></div>
+                </td>
+                <td class="right-column"></td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"></td>
+                <td class="right-column">
+                    <span class="editable" id="defendantTypeDisplay">DEFENDANTS</span>
+                    <div class="edit-mode" id="defendantTypeEdit">
+                        <input type="text" id="defendantTypeInput" placeholder="Defendant Type">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="left-column"></td>
+                <td class="center-column"></td>
+                <td class="right-column" id="addNewPartyTypeCell">
+                    <button id="addNewPartyTypeButton">Add New Party Type</button>
+                </td>
+            </tr>
+        </table>
+    </main>
+</div>
+
+<script>
+let partyTypes = ['plaintiff', 'defendant'];
+let isEditing = {plaintiff: false, defendant: false};
+
+function setupPartyList(listId, initialParties) {
+    const list = document.getElementById(listId);
+    list.innerHTML = '';
+    initialParties.forEach((party, index) => {
+        const span = document.createElement('span');
+        span.className = 'party-name';
+        span.textContent = party.toUpperCase();
+        span.addEventListener('dblclick', () => editPartyName(span, listId));
+        list.appendChild(span);
+        if (index < initialParties.length - 1) {
+            list.appendChild(document.createTextNode(index === initialParties.length - 2 ? ' and ' : ', '));
+        }
+    });
+    updatePartyType(listId);
+    updateAddButtonVisibility(listId.replace('List', ''));
+}
+
+function editPartyName(span, listId) {
+    const partyType = listId.replace('List', '');
+    isEditing[partyType] = true;
+    updateAddButtonVisibility(partyType);
+
+    const currentName = span.textContent;
+    const input = document.createElement('input');
+    input.value = currentName;
+    input.style.width = `${span.offsetWidth}px`;
+    span.textContent = '';
+    span.appendChild(input);
+    input.focus();
+
+    function saveAndRevert() {
+        const newName = input.value.trim().toUpperCase();
+        if (newName === '') {
+            span.remove();
+            updatePartyList(listId);
+        } else {
+            span.textContent = newName;
+            span.addEventListener('dblclick', () => editPartyName(span, listId));
+            updatePartyList(listId);
+        }
+        isEditing[partyType] = false;
+        updateAddButtonVisibility(partyType);
+    }
+
+    input.addEventListener('blur', saveAndRevert);
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            saveAndRevert();
+        }
+    });
+}
+
+function updatePartyList(listId) {
+    const list = document.getElementById(listId);
+    const parties = Array.from(list.querySelectorAll('.party-name')).map(span => span.textContent);
+    list.innerHTML = '';
+    parties.forEach((party, index) => {
+        const span = document.createElement('span');
+        span.className = 'party-name';
+        span.textContent = party;
+        span.addEventListener('dblclick', () => editPartyName(span, listId));
+        list.appendChild(span);
+        if (index < parties.length - 1) {
+            list.appendChild(document.createTextNode(index === parties.length - 2 ? ' and ' : ', '));
+        }
+    });
+    updatePartyType(listId);
+    updateAddButtonVisibility(listId.replace('List', ''));
+    
+    if (parties.length === 0) {
+        const partyType = listId.replace('List', '');
+        addDefaultParty(partyType);
+    }
+}
+
+function updatePartyType(listId) {
+    const list = document.getElementById(listId);
+    const parties = list.querySelectorAll('.party-name');
+    const typeDisplay = document.getElementById(`${listId.replace('List', 'TypeDisplay')}`);
+    const currentType = typeDisplay.textContent.trim();
+    const newType = parties.length > 1 ? pluralize(currentType) : singularize(currentType);
+    typeDisplay.textContent = newType;
+    updateAddButton(listId.replace('List', ''), newType);
+}
+
+function updateAddButton(partyType, newType) {
+    const button = document.getElementById(`add${capitalize(partyType)}Button`);
+    const singularType = singularize(newType);
+    button.textContent = `Add a ${singularType}`;
+}
+
+function updateAddButtonVisibility(partyType) {
+    const container = document.getElementById(`${partyType}Container`);
+    const button = document.getElementById(`add${capitalize(partyType)}Button`);
+    
+    function showButton() {
+        button.style.display = 'inline-block';
+    }
+    
+    function hideButton() {
+        if (!isEditing[partyType]) {
+            button.style.display = 'none';
+        }
+    }
+
+    container.addEventListener('mouseover', showButton);
+    container.addEventListener('mouseout', hideButton);
+    
+    if (isEditing[partyType]) {
+        showButton();
+    } else {
+        hideButton();
+    }
+}
+
+function pluralize(word) {
+    if (word.endsWith('Y')) {
+        return word.slice(0, -1) + 'IES';
+    } else if (word.endsWith('S')) {
+        return word;
+    } else {
+        return word + 'S';
+    }
+}
+
+function singularize(word) {
+    if (word.endsWith('IES')) {
+        return word.slice(0, -3) + 'Y';
+    } else if (word.endsWith('S') && !word.endsWith('SS')) {
+        return word.slice(0, -1);
+    } else {
+        return word;
+    }
+}
+
+function capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
+
+function addParty(containerType) {
+    const list = document.getElementById(`${containerType}List`);
+    const parties = Array.from(list.querySelectorAll('.party-name')).map(span => span.textContent);
+    const partyCount = parties.length + 1;
+    const partyType = document.getElementById(`${containerType}TypeDisplay`).textContent.trim();
+    const singularType = singularize(partyType);
+    const newPartyName = `${singularType} #${partyCount}`;
+    
+    parties.push(newPartyName);
+    setupPartyList(`${containerType}List`, parties);
+    
+    // Trigger editing for the new party
+    const newPartySpan = list.lastElementChild;
+    editPartyName(newPartySpan, `${containerType}List`);
+}
+
+function addDefaultParty(partyType) {
+    const list = document.getElementById(`${partyType}List`);
+    const typeDisplay = document.getElementById(`${partyType}TypeDisplay`);
+    const singularType = singularize(typeDisplay.textContent.trim());
+    const defaultName = `${singularType.toUpperCase()} #1`;
+    
+    const span = document.createElement('span');
+    span.className = 'party-name';
+    span.textContent = defaultName;
+    span.addEventListener('dblclick', () => editPartyName(span, `${partyType}List`));
+    list.appendChild(span);
+    
+    updatePartyType(`${partyType}List`);
+    updateAddButtonVisibility(partyType);
+}
+
+// Initialize party lists
+setupPartyList('plaintiffList', ['JOHN DOE']);
+setupPartyList('defendantList', ['JANE DOE', 'ACME CORP.']);
+
+// Setup add buttons
+document.getElementById('addPlaintiffButton').addEventListener('click', () => addParty('plaintiff'));
+document.getElementById('addDefendantButton').addEventListener('click', () => addParty('defendant'));
+
+// Setup other editable fields
+function setupOtherEditable(displayId, editId, inputId, isTextarea = false, isTitleCase = false) {
+    const displayElement = document.getElementById(displayId);
+    const editElement = document.getElementById(editId);
+    const inputElement = document.getElementById(inputId);
+
+    displayElement.addEventListener('dblclick', function() {
+        displayElement.style.display = 'none';
+        editElement.style.display = 'inline-block';
+        inputElement.value = displayElement.textContent;
+        inputElement.focus();
+    });
+
+    inputElement.addEventListener('input', function() {
+        if (isTitleCase) {
+            this.value = toTitleCase(this.value);
+        } else {
+            this.value = this.value.toUpperCase();
+        }
+    });
+
+    inputElement.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey && !isTextarea) {
+            e.preventDefault();
+            saveOtherChanges(displayId, editId, inputId, isTextarea, isTitleCase);
+        }
+    });
+
+    inputElement.addEventListener('blur', function() {
+        saveOtherChanges(displayId, editId, inputId, isTextarea, isTitleCase);
+    });
+}
+
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
+
+function saveOtherChanges(displayId, editId, inputId, isTextarea, isTitleCase) {
+    const displayElement = document.getElementById(displayId);
+    const editElement = document.getElementById(editId);
+    const inputElement = document.getElementById(inputId);
+
+    if (isTextarea) {
+        displayElement.innerHTML = '<strong>' + inputElement.value.replace(/\n/g, '<br>') + '</strong>';
+    } else if (isTitleCase) {
+        displayElement.textContent = toTitleCase(inputElement.value);
+    } else {
+        displayElement.textContent = inputElement.value.toUpperCase();
+    }
+    displayElement.style.display = 'inline-block';
+    editElement.style.display = 'none';
+
+    if (displayId.includes('TypeDisplay')) {
+        const listId = displayId.replace('TypeDisplay', 'List');
+        updatePartyType(listId);
+    }
+}
+
+setupOtherEditable('courtFileNoDisplay', 'courtFileNoEdit', 'courtFileNoInput', false, true);
+setupOtherEditable('courtRegistryDisplay', 'courtRegistryEdit', 'courtRegistryInput', false, true);
+setupOtherEditable('courtNameDisplay', 'courtNameEdit', 'courtNameInput', true);
+setupOtherEditable('plaintiffTypeDisplay', 'plaintiffTypeEdit', 'plaintiffTypeInput');
+setupOtherEditable('defendantTypeDisplay', 'defendantTypeEdit', 'defendantTypeInput');
+
+// Initialize add button visibility
+updateAddButtonVisibility('plaintiff');
+updateAddButtonVisibility('defendant');
+
+// Setup "Add New Party Type" button
+const addNewPartyTypeCell = document.getElementById('addNewPartyTypeCell');
+const addNewPartyTypeButton = document.getElementById('addNewPartyTypeButton');
+
+addNewPartyTypeCell.addEventListener('mouseover', () => {
+    addNewPartyTypeButton.style.display = 'inline-block';
+});
+
+addNewPartyTypeCell.addEventListener('mouseout', () => {
+    addNewPartyTypeButton.style.display = 'none';
+});
+
+function addNewPartyType() {
+    const mainTable = document.getElementById('mainTable');
+    const newPartyType = `newPartyType${partyTypes.length + 1}`;
+    const newRowIndex = mainTable.rows.length - 1;
+    
+    // Insert new rows
+    const newRows = [
+        `<tr>
+            <td class="left-column">AND:</td>
+            <td class="center-column"></td>
+            <td class="right-column"></td>
+        </tr>`,
+        `<tr>
+            <td class="left-column"></td>
+            <td class="center-column party-container" id="${newPartyType}Container">
+                <button class="add-button" id="add${capitalize(newPartyType)}Button">Add a New Party Type</button>
+                <div class="party-list" id="${newPartyType}List"></div>
+            </td>
+            <td class="right-column"></td>
+        </tr>`,
+        `<tr>
+            <td class="left-column"></td>
+            <td class="center-column"></td>
+            <td class="right-column">
+                <span class="editable" id="${newPartyType}TypeDisplay">NEW PARTY TYPE</span>
+                <div class="edit-mode" id="${newPartyType}TypeEdit">
+                    <input type="text" id="${newPartyType}TypeInput" placeholder="New Party Type">
+                </div>
+            </td>
+        </tr>`
+    ];
+
+    newRows.forEach((row, index) => {
+        mainTable.insertRow(newRowIndex + index).innerHTML = row;
+    });
+
+    // Setup the new party type
+    partyTypes.push(newPartyType);
+    isEditing[newPartyType] = false;
+    setupPartyList(`${newPartyType}List`, [`NEW PARTY TYPE #1`]);
+    document.getElementById(`add${capitalize(newPartyType)}Button`).addEventListener('click', () => addParty(newPartyType));
+    setupOtherEditable(`${newPartyType}TypeDisplay`, `${newPartyType}TypeEdit`, `${newPartyType}TypeInput`);
+    updateAddButtonVisibility(newPartyType);
+}
+
+addNewPartyTypeButton.addEventListener('click', addNewPartyType);
+
+</script>
+</body></html>
