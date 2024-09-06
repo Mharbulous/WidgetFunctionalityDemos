@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Widget Functionality Demos</title>
-<style>
+    <style>
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
@@ -22,20 +22,30 @@
         h2 {
             color: #2980b9;
         }
+        h3 {
+            color: #34495e;
+        }
         ul {
             list-style-type: none;
             padding-left: 0;
         }
-        li {
+        ul li {
             margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
         }
-        li::before {
+        ul li::before {
             content: "•";
             color: #3498db;
             font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+            position: absolute;
+            left: 0;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        ol li {
+            margin-bottom: 10px;
         }
         .widget {
             background-color: #fff;
@@ -50,12 +60,17 @@
             padding: 10px;
             margin-top: 10px;
         }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
-   
-
-<h1>Vue 3 Widgets</h1>
+    <h1>Vue 3 Widgets</h1>
     <p>The job is to create four Vue 3 widgets:</p>
     <ul>
         <li>FormText.vue</li>
@@ -63,7 +78,7 @@
         <li>PartyNameList.vue</li>
         <li>PartyName.vue</li>
     </ul>
-
+    
     <div class="widget">
         <h2>FormText.vue</h2>
         <p>For entering a short line of text with simple Regex validation.</p>
@@ -82,8 +97,8 @@
                 <li>On double click, text converts to editable merge field.</li>
                 <li>On enter, or click elsewhere to lose focus, to go back to ordinary text view.</li>
             </ol>
+            <p>If passed a Regex prop value, do some simple regex validation while editing the text field:</p>
             <ol>
-                <p>If passed a Regex prop value, do some simple regex validation while editing the text field:</p>
                 <li>Any characters that don't follow the Regex pattern will be red.</li>
                 <li>If there was only one valid character that the new character should have been, insert the correct character immediately before the invalid character.</li>
                 <li>If inserting the correct character makes the invalid character become valid, change its color from red to black.</li>
@@ -91,7 +106,7 @@
         </div>
     </div>
 
- <h1>Widget Functionality Demos</h1>
+    <h1>Widget Functionality Demos</h1>
     <p>Welcome to the Widget Functionality Demos.</p>
     <ul>
         <li>
@@ -106,7 +121,5 @@
             <a href="addPartyType/2-01-new-party-type.html">DEMO: Add Party Type</a>
         </li>
     </ul>
-
-
 </body>
 </html>
