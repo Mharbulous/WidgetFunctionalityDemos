@@ -4,6 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Widget Functionality Demos</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        li::before {
+            content: "•";
+            color: #3498db;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        .widget {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .functionality {
+            background-color: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <h1>Widget Functionality Demos</h1>
@@ -21,5 +68,45 @@
             <a href="addPartyType/2-01-new-party-type.html">DEMO: Add Party Type</a>
         </li>
     </ul>
+
+<h1>Vue 3 Widgets</h1>
+    <p>The job is to create four Vue 3 widgets:</p>
+    <ul>
+        <li>FormText.vue</li>
+        <li>FormDrop.vue</li>
+        <li>PartyNameList.vue</li>
+        <li>PartyName.vue</li>
+    </ul>
+
+    <div class="widget">
+        <h2>FormText.vue</h2>
+        <p>For entering a short line of text with simple Regex validation.</p>
+        
+        <h3>Props:</h3>
+        <ul>
+            <li><strong>Name:</strong> A string</li>
+            <li><strong>Regex:</strong> [Optional] a string with a regex pattern for validation purposes</li>
+        </ul>
+        
+        <h3>Functionality:</h3>
+        <div class="functionality">
+            <ol>
+                <li>Formtext looks like normal text until hovered over.</li>
+                <li>On hover, show an outline of the text field that will appear when double clicked.</li>
+                <li>On double click, text converts to editable merge field.</li>
+                <li>On enter, or click elsewhere to lose focus, to go back to ordinary text view.</li>
+            </ol>
+        </div>
+        
+        <h3>Regex Validation:</h3>
+        <div class="functionality">
+            <p>If passed a Regex prop value, do some simple regex validation while editing the text field:</p>
+            <ol>
+                <li>Any characters that don't follow the Regex pattern will be red.</li>
+                <li>If there was only one valid character that the new character should have been, insert the correct character immediately before the invalid character.</li>
+                <li>If inserting the correct character makes the invalid character become valid, change its color from red to black.</li>
+            </ol>
+        </div>
+    </div>
 </body>
 </html>
