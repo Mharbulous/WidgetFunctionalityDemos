@@ -1,0 +1,132 @@
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-color: #e6e9f0;
+  margin: 0;
+  padding: 0;
+}
+
+.document-wrapper {
+  width: 800px;
+  margin: 20px auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.document {
+  padding: 40px;
+}
+
+.document-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+
+td {
+  border: 1px solid #000;
+  vertical-align: top;
+}
+
+#headerTable {
+  table-layout: auto;
+  margin: 0;  /* Remove all margins */
+}
+
+#headerTable td {
+  padding: 0;  /* Remove cell padding */
+}
+
+.header-left-column {
+  width: 100%;
+}
+
+.header-right-column {
+  width: 1%;
+  white-space: nowrap;
+  text-align: right;
+}
+
+#mainTable {
+  table-layout: auto;
+  margin: 0;  /* Remove all margins */
+}
+
+#mainTable td {
+  padding: 0;  /* Remove cell padding */
+}
+
+.left-column {
+  width: auto;
+  white-space: nowrap;
+}
+
+.center-column {
+  width: 100%;
+}
+
+.right-column {
+  width: auto;
+  white-space: nowrap;
+  text-align: right;
+}
+
+#courtNameDisplay {
+  text-align: center;
+  font-weight: bold;
+}
+
+.file-info {
+  text-align: right;
+}
+
+.party-list {
+  min-height: 30px;
+  padding: 2px;
+  border: none;
+  text-align: center;
+}
+
+.named-party {
+  padding: 0 2px;
+  display: inline-block;
+  margin: 0 1px;
+}
+
+.editable:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.edit-mode {
+  display: none;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+}
+
+.preview {
+  color: blue;
+  opacity: 0.7;
+  border: 1px dashed blue;
+  padding: 2px;
+  margin: 1px;
+}
+
+.named-party.dragging {
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
+}
+
+.party-list.empty {
+  background-color: #ffffd0;
+  transition: background-color 0.3s ease;
+}
